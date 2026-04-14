@@ -1,0 +1,6 @@
+# build成果物
+bin/
+obj/
+
+# OS
+.DS_Store
