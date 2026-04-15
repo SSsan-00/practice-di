@@ -22,6 +22,16 @@ public class SlackService : IMessageService
   }
 }
 
+// テスト用のダミー実装
+public class MockMessageService : IMessageService
+{
+  public void Send(string message)
+  {
+    // 本来やログやカウントだけにする
+    Console.WriteLine("Mock送信(実際は何もしていない)");
+  }
+}
+
 // 通知を行うクラス
 public class Notification
 {
@@ -45,7 +55,7 @@ class Program
   static void Main()
   {
     // ここで実装を選ぶ
-    IMessageService messageService = new SlackService();
+    IMessageService messageService = new MockMessageService();
 
     // Notificationを外から渡す
     var notification = new Notification(messageService);
