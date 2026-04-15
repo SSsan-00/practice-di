@@ -4,3 +4,11 @@ obj/
 
 # OS
 .DS_Store
+
+# Test Results
+TestResults/
+
+# .NET テスト関連
+*.trx
+*.coverage
+*.coveragexml
