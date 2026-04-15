@@ -13,4 +13,11 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
+  <ItemGroup>
+    <!-- 配下のテストプロジェクトを親プロジェクトのコンパイル対象から除外 -->
+    <Compile Remove="practice-di.Tests/**/*.cs" />
+    <EmbeddedResource Remove="practice-di.Tests/**/*.resx" />
+    <None Remove="practice-di.Tests/**/*" />
+  </ItemGroup>
+
 </Project>
