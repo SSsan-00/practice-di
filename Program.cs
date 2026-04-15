@@ -1,4 +1,6 @@
-﻿// 抽象(インターフェース)
+﻿using Microsoft.Extensions.DependencyInjection;
+
+// 抽象(インターフェース)
 public interface IMessageService
 {
   void Send(string message);
@@ -54,13 +56,21 @@ class Program
 {
   static void Main()
   {
-    // ここで実装を選ぶ
-    IMessageService messageService = new MockMessageService();
+    // DIコンテナを作る
+    var services = new ServiceCollection();
 
-    // Notificationを外から渡す
-    var notification = new Notification(messageService);
+    // どのinterfaceにどの実装を結びつけるか登録
+    services.AddTransient<IMessageService, MessageService>();
 
-    // 通知を実行する
-    notification.Notify();
-  }
-}
+    // Notificationも登録
+    services.AddTransient<Notification>();
+
+    // コンテナ完成
+    var provider = services.BuildServiceProvider();
+
+    // コンテナから取り出す(newしない)
+    var notification = provider.GetService<Notification>();
+
+    notification?.Notify();
+
+  }}
